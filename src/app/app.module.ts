@@ -2,19 +2,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
-import { AppComponent } from './root/app.component';
-import { SingInComponent } from './sing-in/sing-in.component';
+import { ComponentsModule } from './components';
+
+import { AppComponent } from './containers/app';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    SingInComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    ComponentsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

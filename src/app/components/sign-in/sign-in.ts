@@ -1,10 +1,11 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 
 @Component({
-  selector: 'sing-in',
-  templateUrl: './sing-in.component.html'
+  selector: 'pl-sing-in',
+  templateUrl: './sign-in.html',
+  styleUrls: ['./sign-in.css']
 })
-export class SingInComponent implements OnInit {
+export class SignInComponent implements OnInit {
   private clientId: string;
   private scopes: string;
   private discoveryDocs: [string];
@@ -22,13 +23,13 @@ export class SingInComponent implements OnInit {
     gapi.auth2.getAuthInstance().signOut();
   }
 
-  updateSigninStatus(isSignedIn) {
-    this.ngZone.run(() => this.isSignedIn = isSignedIn);
-    console.log(isSignedIn);
-  }
-
-
   ngOnInit() { 
+
+    let updateSigninStatus = (isSignedIn) => {
+      this.ngZone.run(() => this.isSignedIn = isSignedIn);
+      console.log(this.isSignedIn);
+    }
+
     let initClient = () => {
         gapi.client.init({
           clientId: this.clientId,
@@ -36,9 +37,9 @@ export class SingInComponent implements OnInit {
           discoveryDocs: this.discoveryDocs 
         }).then(() => {
           // Listen for sign-in state changes.
-          gapi.auth2.getAuthInstance().isSignedIn.listen(this.updateSigninStatus);
+          gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
           // Handle the initial sign-in state.
-          this.updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+          updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
       });
     }
     gapi.load('client:auth2', initClient);

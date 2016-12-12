@@ -1,0 +1,7 @@
+<button id="singin" *ngIf="!isSignedIn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+  Sign In
+</button>
+<button id="singout" *ngIf="isSignedIn" (click)="singOut()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+  Sign Out
+</button>
+<img class="mdl-navigation__image" *ngIf="image" [src]="image" alt="">
