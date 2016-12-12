@@ -18,9 +18,14 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
-        "styles.css"
+        "styles.css",
+        "../node_modules/material-design-lite/dist/material.red-blue.min.css",
+        "../node_modules/flexboxgrid/dist/flexboxgrid.min.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "vendors/gapi.js",
+        "../node_modules/material-design-lite/material.min.js"
+      ],
       "environments": {
         "source": "environments/environment.ts",
         "dev": "environments/environment.ts",
